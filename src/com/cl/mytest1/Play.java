@@ -1,10 +1,10 @@
 package com.cl.mytest1;
 
-import com.sun.javafx.collections.MappingChange.Map;
+import java.util.Arrays;
 
 public class Play {
 	private int place;
-	private Map<Integer, Jang> myJangs;
+	private Jang[] myJangs;
 
 	public int getPlace() {
 		return place;
@@ -14,17 +14,24 @@ public class Play {
 		this.place = place;
 	}
 
-	public Map<Integer, Jang> getMyJangs() {
+	public Jang[] getMyJangs() {
 		return myJangs;
 	}
 
-	public void setMyJangs(Map<Integer, Jang> myJangs) {
+	public void setMyJangs(Jang[] myJangs) {
 		this.myJangs = myJangs;
 	}
 
-	public Play(int place, Map<Integer, Jang> myJangs) {
+	public Play(int place, Jang[] myJangs) {
 		this.place = place;
 		this.myJangs = myJangs;
 	}
+
+	@Override
+	public String toString() {
+		return "Play [place=" + place + ", myJangs=" + Arrays.toString(myJangs) + "]";
+	}
 	
+	
+
 }

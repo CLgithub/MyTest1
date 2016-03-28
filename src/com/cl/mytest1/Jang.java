@@ -3,7 +3,21 @@ package com.cl.mytest1;
 public class Jang {
 	private String type;
 	private int value;
-	private int status;
+	private int status;// init：未被摸，1、2、3、4：在谁手上
+
+	public static final int INIT = 0;
+	public static final int P1HAVE = 1;
+	public static final int P2HAVE = 2;
+	public static final int P3HAVE = 3;
+	public static final int P4HAVE = 4;
+	public static final int P1DIS = 5;
+	public static final int P2DIS = 6;
+	public static final int P3DIS = 7;
+	public static final int P4DIS = 8;
+	public static final int P1R = 9;
+	public static final int P2R = 10;
+	public static final int P3R = 11;
+	public static final int P4R = 12;
 
 	public Jang(String type, int value, int status) {
 		this.type = type;
@@ -37,7 +51,10 @@ public class Jang {
 
 	@Override
 	public String toString() {
-		return "Jang [type=" + type + ", value=" + value + ", status=" + status + "]";
+		String str = "[" + value + type + " " + status + "]";
+		return str;
+		// return "Jang [type=" + type + ", value=" + value + ", status=" +
+		// status + "]";
 	}
 
 }
