@@ -11,17 +11,17 @@ public class Lib {
 	private Lib() {
 		for (int i = 0; i < W.length; i++) {
 			for (int j = 0; j < W[i].length; j++) {
-				W[i][j] = new Jang("W", i + 1, Jang.INIT);
+				W[i][j] = new Jang(i + 1,"W", Jang.INIT);
 			}
 		}
 		for (int i = 0; i < L.length; i++) {
 			for (int j = 0; j < L[i].length; j++) {
-				L[i][j] = new Jang("L", i + 1, Jang.INIT);
+				L[i][j] = new Jang(i + 1, "L", Jang.INIT);
 			}
 		}
 		for (int i = 0; i < O.length; i++) {
 			for (int j = 0; j < O[i].length; j++) {
-				O[i][j] = new Jang("O", i + 1, Jang.INIT);
+				O[i][j] = new Jang(i + 1, "O", Jang.INIT);
 			}
 		}
 	}

@@ -19,7 +19,7 @@ public class Jang {
 	public static final int P3R = 11;
 	public static final int P4R = 12;
 
-	public Jang(String type, int value, int status) {
+	public Jang( int value, String type, int status) {
 		this.type = type;
 		this.value = value;
 		this.status = status;
@@ -51,7 +51,8 @@ public class Jang {
 
 	@Override
 	public String toString() {
-		String str = "[" + value + type + " " + status + "]";
+//		String str = "[" + value + type + " " + status + "]";
+		String str = "[" + value + type + "]";
 		return str;
 		// return "Jang [type=" + type + ", value=" + value + ", status=" +
 		// status + "]";
