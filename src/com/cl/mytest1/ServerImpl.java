@@ -69,47 +69,38 @@ public class ServerImpl implements Server {
 	}
 
 	@Override
-	public void sortOutJ(Play p1) {
-//		Jang[] jangs=p1.getMyJangs();
-//		Jang[] jangs={
-//				new Jang("L", 6, 1),
-//				new Jang("W", 9, 1), 
-//				new Jang("O", 9, 1), 
-//				new Jang("W", 7, 1), 
-//				new Jang("W", 8, 1), 
-//				new Jang("L", 8, 1), 
-//				new Jang("W", 2, 1), 
-//				new Jang("L", 2, 1), 
-//				new Jang("L", 4, 1), 
-//				new Jang("W", 7, 1), 
-//				new Jang("L", 5, 1), 
-//				new Jang("W", 1, 1), 
-//				new Jang("O", 6, 1), 
-//				new Jang("W", 3, 1), 
-//				null, null, null, null};
-		Jang[] jangs={new Jang(4,"W",1), new Jang(4,"L",1), new Jang(2,"W",1), new Jang(9,"W",1), 
-				new Jang(7,"W",1), new Jang(7,"O",1), new Jang(3,"O",1), new Jang(7,"L",1), new Jang(8,"O",1),
-				new Jang(8,"L",1), new Jang(5,"L",1), new Jang(9,"L",1), new Jang(4,"O",1), new Jang(5,"W",1),
+	public void sortOutJ(Play p) {
+//		[[6L], [2O], [3L], [4O], [5O], [8O], [5L], [7W], [1W], [6O], [7O], [6W], [4L], [2W], null, null, null, null]
+		Jang[] jangs={ 		
+				new Jang(6,"L",1), new Jang(2,"O",1),new Jang(3,"L",1), new Jang(4,"O",1), new Jang(5,"O",1),
+				new Jang(8,"O",1), new Jang(5,"L",1), new Jang(7,"W",1), new Jang(1,"W",1), new Jang(6,"O",1),
+				new Jang(7,"O",1),new Jang(6,"W",1), new Jang(4,"L",1), new Jang(2,"W",1), 
 				null, null, null, null};
-		System.out.println(Arrays.toString(jangs));
 //		[[6L], [9W], [9L], [7O], [8W], [8L], [2W], [2L], [4L], [7W], [5L], [1W], [6O], [3W], null, null, null, null]
 //		[[4W], [4L], [2W], [9W], [7W], [7O], [3O], [7L], [8O], [8L], [5L], [9L], [4O], [5W], null, null, null, null]
-		int last=0;
+
+//		Jang[] jangs=p.getMyJangs();
+		System.out.println(Arrays.toString(jangs));
+		
+		
+		
 		int long_1=jangs.length-4-1;
-		for (int i = 0; i < long_1-last; i++) {
-			if(jangs[i].getType().equals("L")){
-				if(long_1-last==i){
-					long_1=i-1;
-					last=0;
+		int last=0;
+		int j=0;
+		for (j = 0; j < long_1-last; j++) {
+			if(jangs[j].getType().equals("L")){
+				if(long_1-last==j){
 					break;
 				}
 				Jang tmp=jangs[long_1-last];
-				jangs[long_1-last]=jangs[i];
-				jangs[i]=tmp;
+				jangs[long_1-last]=jangs[j];
+				jangs[j]=tmp;
 				last++;
-				i--;
+				j--;
 			}
 		}
+		long_1=j-1;
+		last=0;
 		for (int i = 0; i < long_1-last; i++) {
 			if(jangs[i].getType().equals("W")){
 				if(long_1-last==i){
@@ -120,6 +111,22 @@ public class ServerImpl implements Server {
 				jangs[i]=tmp;
 				last++;
 				i--;
+			}
+		}
+//		System.out.println(Arrays.toString(jangs));
+		long_1=jangs.length-4-1;
+		last=0;
+		for (int x = 0; x < long_1-last; x++) {
+			for (int i = 0; i < long_1-last-x; i++) {
+				if(jangs[i].getType().equals(jangs[i+1].getType())){
+					if(jangs[i].getValue()>jangs[i+1].getValue()){
+						Jang tmp=jangs[i];
+						jangs[i]=jangs[i+1];
+						jangs[i+1]=tmp;
+					}
+				}else {
+					continue;
+				}
 			}
 		}
 		System.out.println(Arrays.toString(jangs));

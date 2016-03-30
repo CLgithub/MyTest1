@@ -1,5 +1,7 @@
 package com.cl.mytest1;
 
+import java.util.Arrays;
+
 public class MainT {
 
 	public static void main(String[] args) {
@@ -13,8 +15,16 @@ public class MainT {
 		Jang[] jangs=server.loadBJang();
 		//摸
 		server.loadMyJang(jangs,p1,p2,p3,p4);
+//		System.out.println(Arrays.toString(p1.getMyJangs()));
 		//整理
 		server.sortOutJ(p1);
+//		server.sortOutJ(p2);
+//		server.sortOutJ(p3);
+//		server.sortOutJ(p4);
+//		System.out.println(Arrays.toString(p1.getMyJangs()));
+//		System.out.println(Arrays.toString(p2.getMyJangs()));
+//		System.out.println(Arrays.toString(p3.getMyJangs()));
+//		System.out.println(Arrays.toString(p4.getMyJangs()));
 		//run
 		server.runJang(jangs,p1,p2,p3,p4);
 	}
