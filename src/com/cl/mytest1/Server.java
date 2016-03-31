@@ -37,4 +37,12 @@ public interface Server {
 	 */
 	public void runJang(Jang[] jangs, Play p1, Play p2, Play p3, Play p4);
 
+	/**
+	 * 得到所有14张牌的组合
+	 * @author L
+	 * @date 2016年3月31日
+	 * @param jangs
+	 */
+	public void all14(Jang[] jangs);
+
 }
