@@ -1,48 +1,25 @@
 package com.cl.mytest1;
 
-public interface Server {
+import java.util.List;
 
+public interface Server {
 	/**
 	 * 砌---得到WLO后随机排列并存入一个list内
 	 * @author L
-	 * @date 2016年3月27日
+	 * @date 2016年4月6日
+	 * @return
 	 */
-	public Jang[] loadBJang();
-	
-	/**
-	 * 摸---
-	 * @author L
-	 * @date 2016年3月27日
-	 * @param jangs
-	 */
-	public void loadMyJang(Jang[] jangs, Play p1, Play p2, Play p3, Play p4);
+	public List<Jang> loadBJang();
 
 	/**
-	 * 整理
+	 * 摸
 	 * @author L
-	 * @date 2016年3月28日
-	 * @param p1
-	 */
-	public void sortOutJ(Play p1);
-
-	/**
-	 * run
-	 * @author L
-	 * @date 2016年3月28日
-	 * @param jangs
+	 * @date 2016年4月6日
+	 * @param jangs	
 	 * @param p1
 	 * @param p2
 	 * @param p3
 	 * @param p4
 	 */
-	public void runJang(Jang[] jangs, Play p1, Play p2, Play p3, Play p4);
-
-	/**
-	 * 得到所有14张牌的组合
-	 * @author L
-	 * @date 2016年3月31日
-	 * @param jangs
-	 */
-	public void all14(Jang[] jangs);
-
+	public void loadMyJang(List<Jang> jangs, Player p1, Player p2, Player p3, Player p4);
 }

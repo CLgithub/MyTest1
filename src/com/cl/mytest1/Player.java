@@ -1,10 +1,10 @@
 package com.cl.mytest1;
 
-import java.util.Arrays;
+import java.util.TreeSet;
 
-public class Play {
+public class Player {
 	private int place;
-	private Jang[] myJangs;
+	private TreeSet<Jang> myJangs;
 
 	public int getPlace() {
 		return place;
@@ -14,24 +14,23 @@ public class Play {
 		this.place = place;
 	}
 
-	public Jang[] getMyJangs() {
+	public TreeSet<Jang> getMyJangs() {
 		return myJangs;
 	}
 
-	public void setMyJangs(Jang[] myJangs) {
+	public void setMyJangs(TreeSet<Jang> myJangs) {
 		this.myJangs = myJangs;
 	}
 
-	public Play(int place, Jang[] myJangs) {
+	
+	public Player(int place, TreeSet<Jang> myJangs) {
 		this.place = place;
 		this.myJangs = myJangs;
 	}
 
 	@Override
 	public String toString() {
-		return "Play [place=" + place + ", myJangs=" + Arrays.toString(myJangs) + "]";
+		return "Play [place=" + place + ", myJangs=" + myJangs + "]";
 	}
-	
-	
 
 }

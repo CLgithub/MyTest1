@@ -1,6 +1,11 @@
 package com.cl.mytest1;
 
-public class Jang {
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
+public class Jang implements Comparable<Jang>{
+	private int number;
 	private String type;
 	private int value;
 	private int status;// init：未被摸，1、2、3、4：在谁手上
@@ -19,10 +24,11 @@ public class Jang {
 	public static final int P3R = 11;
 	public static final int P4R = 12;
 
-	public Jang( int value, String type, int status) {
+	public Jang( int value, String type, int status, int number) {
 		this.type = type;
 		this.value = value;
 		this.status = status;
+		this.number=number;
 	}
 
 	public int getStatus() {
@@ -48,6 +54,14 @@ public class Jang {
 	public void setValue(int value) {
 		this.value = value;
 	}
+	
+	public int getNumber() {
+		return number;
+	}
+
+	public void setNumber(int number) {
+		this.number = number;
+	}
 
 	@Override
 	public String toString() {
@@ -57,5 +71,39 @@ public class Jang {
 		// return "Jang [type=" + type + ", value=" + value + ", status=" +
 		// status + "]";
 	}
+
+//	@Override
+//	public String toString() {
+//		String str="["+value+type+" "+status+"]";
+//		return str;
+//	}
+//	
+	
+
+	@Override
+	public int compareTo(Jang j2) {
+		if(type.equals(j2.type)){
+			if(value==j2.value){
+				return number-j2.number;
+			}else {
+				return value-j2.value;
+			}
+		}else if(type.equals("O")){
+			return -11;
+		}else if(type.equals("L")){
+			return 1;
+		}else if(type.equals("W")){
+			if(j2.type.equals("L")){
+				return -1;
+			}else {
+				return 1;
+			}
+		}else {
+			return 0;
+		}
+	}
+
+	
+	
 
 }

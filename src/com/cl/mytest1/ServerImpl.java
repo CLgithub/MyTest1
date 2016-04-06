@@ -1,137 +1,75 @@
 package com.cl.mytest1;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import java.util.TreeSet;
 
 public class ServerImpl implements Server {
 	
-	
-	public Jang[] loadBJang() {
-		Jang[][] W =Lib.getLib().W;
-		Jang[][] L =Lib.getLib().L;
-		Jang[][] O =Lib.getLib().O;
-		Jang[] jangs=new Jang[108];//最终返回
-		for(int i=0;i<O.length;i++){
-			for(int j=0;j<O[i].length;j++){
-				jangs[O[i].length*i+j]=O[i][j];
-			}
-		}
-		for(int i=0;i<W.length;i++){
-			for(int j=0;j<W[i].length;j++){
-				jangs[36+(W[i].length*i+j)]=W[i][j];
-			}
-		}
-		for(int i=0;i<L.length;i++){
-			for(int j=0;j<L[i].length;j++){
-				jangs[72+L[i].length*i+j]=L[i][j];
+	@Override
+	public List<Jang> loadBJang() {
+		List<Jang> list = new ArrayList<Jang>();
+		String[] types = { "O", "W", "L" };
+		Integer[] values = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+		for (int j = 0; j < types.length; j++) {
+			for (int i = 0; i < values.length; i++) {
+				for (int k = 0; k < 4; k++) {
+					list.add(new Jang(values[i], types[j], Jang.INIT, k+1));
+				}
 			}
 		}
 		Random random=new Random();
-		int r=0;
-		for(int i=0;i<1000000;i++){
-//			r=random.nextInt(104);//产生0~9之间的随机数
-//			Jang tmp=jangs[r];
-//			jangs[r]=jangs[r+4];
-//			jangs[r+4]=tmp;
+		for(int i=0;i<140;i++){
+			int index1=random.nextInt(list.size());
+			int index2=random.nextInt(list.size());
+			Jang tmp=list.get(index1);
+			list.set(index1, list.get(index2));
+			list.set(index2, tmp);
 		}
-		return jangs;
+		return list;
 	}
-	
-	public void loadMyJang(Jang[] jangs, Play p1, Play p2, Play p3, Play p4) {
-		p1.setMyJangs(new Jang[18]);
-		p2.setMyJangs(new Jang[18]);
-		p3.setMyJangs(new Jang[18]);
-		p4.setMyJangs(new Jang[18]);
-		int j=0;
-		for(int i=0;i<52;i=i+4){
-			jangs[i].setStatus(Jang.P1HAVE);
-			jangs[i+1].setStatus(Jang.P2HAVE);
-			jangs[i+2].setStatus(Jang.P3HAVE);
-			jangs[i+3].setStatus(Jang.P4HAVE);
-			
-			p1.getMyJangs()[j]=jangs[i];
-			p2.getMyJangs()[j]=jangs[i+1];
-			p3.getMyJangs()[j]=jangs[i+2];
-			p4.getMyJangs()[j]=jangs[i+3];
-			j++;
+
+	@Override
+	public void loadMyJang(List<Jang> jangs, Player p1, Player p2, Player p3, Player p4) {
+		TreeSet<Jang> jangs1=new TreeSet<Jang>();
+		TreeSet<Jang> jangs2=new TreeSet<Jang>();
+		TreeSet<Jang> jangs3=new TreeSet<Jang>();
+		TreeSet<Jang> jangs4=new TreeSet<Jang>();
+		Jang j1=null;
+		Jang j2=null;
+		Jang j3=null;
+		Jang j4=null;
+		for(int i=0;i < 3;i++){
+			for (int j = 0; j < 4; j++) {
+				j1=jangs.get(16*i+j);
+				j2=jangs.get(16*i+j+4);
+				j3=jangs.get(16*i+j+8);
+				j4=jangs.get(16*i+j+12);
+				jangs1.add(j1);
+				j1.setStatus(Jang.P1HAVE);
+				jangs2.add(j2);
+				j2.setStatus(Jang.P2HAVE);
+				jangs3.add(j3);
+				j3.setStatus(Jang.P3HAVE);
+				jangs4.add(j4);
+				j4.setStatus(Jang.P4HAVE);
+			}
 		}
 		//tiaopai
-		jangs[52].setStatus(Jang.P1HAVE);
-		p1.getMyJangs()[13]=jangs[52];
+		jangs1.add(jangs.get(48));
+		jangs.get(48).setStatus(Jang.P1HAVE);
+		jangs2.add(jangs.get(49));
+		jangs.get(49).setStatus(Jang.P2HAVE);
+		jangs1.add(jangs.get(50));
+		jangs.get(50).setStatus(Jang.P1HAVE);
+		jangs3.add(jangs.get(51));
+		jangs.get(51).setStatus(Jang.P3HAVE);
+		jangs4.add(jangs.get(52));
+		jangs.get(52).setStatus(Jang.P4HAVE);
+		p1.setMyJangs(jangs1);
+		p2.setMyJangs(jangs2);
+		p3.setMyJangs(jangs3);
+		p4.setMyJangs(jangs4);
 	}
-
-	@Override
-	public void sortOutJ(Play p) {
-		Jang[] jangs=p.getMyJangs();
-		int nullIndex=0;
-		for (int i = 0; i < jangs.length; i++) {
-			if(null==jangs[i]){
-				nullIndex=i;
-				break;
-			}
-		}
-		int long1=nullIndex;
-		int last=0;
-		int j=0;
-		for (j = 0; j < long1-last; j++) {
-			if(jangs[j].getType().equals("L")){
-				if(long1-last==j){
-					break;
-				}
-				Jang tmp=jangs[long1-last-1];
-				jangs[long1-last-1]=jangs[j];
-				jangs[j]=tmp;
-				last++;
-				j--;
-			}
-		}
-		long1=j;
-		last=0;
-		for (int i = 0; i < long1-last; i++) {
-			if(jangs[i].getType().equals("W")){
-				if(long1-last==i){
-					break;
-				}
-				Jang tmp=jangs[long1-last-1];
-				jangs[long1-last-1]=jangs[i];
-				jangs[i]=tmp;
-				last++;
-				i--;
-			}
-		}
-		long1=nullIndex;
-		for (int x = 0; x < long1-1; x++) {
-			for (int i = 0; i < long1-1-x; i++) {
-				if(jangs[i].getType().equals(jangs[i+1].getType())){
-					if(jangs[i].getValue()>jangs[i+1].getValue()){
-						Jang tmp=jangs[i];
-						jangs[i]=jangs[i+1];
-						jangs[i+1]=tmp;
-					}
-				}else {
-					continue;
-				}
-			}
-		}
-	}
-
-	@Override
-	public void runJang(Jang[] jangs, Play p1, Play p2, Play p3, Play p4) {
-		
-	}
-
-	@Override
-	public void all14(Jang[] jangs) {
-		int count=0;
-		Jang[] arrJang=new Jang[14];
-		for (int j = 0; j < jangs.length-14+1; j++) {
-			for (int k = 14; k>0; k--) {
-				for (int i = 14-1; i < jangs.length; i++) {
-					count++;
-				}
-			}
-		}
-		System.out.println(count);
-		
-	}
-
 }
