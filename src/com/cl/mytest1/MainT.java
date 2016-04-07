@@ -18,6 +18,11 @@ public class MainT {
 		
 		//摸
 		server.loadMyJang(jangs,p1,p2,p3,p4);
+		//理
+		server.sortJang(p1.getMyJangs());
+		server.sortJang(p2.getMyJangs());
+		server.sortJang(p3.getMyJangs());
+		server.sortJang(p4.getMyJangs());
 		System.out.println(p1.getMyJangs());
 		System.out.println(p2.getMyJangs());
 		System.out.println(p3.getMyJangs());
@@ -30,6 +35,8 @@ public class MainT {
 			}
 		}
 		System.out.println();
+		
+		
 //		//run
 //		server.runJang(jangs,p1,p2,p3,p4);
 	}

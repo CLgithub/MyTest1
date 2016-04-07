@@ -22,4 +22,12 @@ public interface Server {
 	 * @param p4
 	 */
 	public void loadMyJang(List<Jang> jangs, Player p1, Player p2, Player p3, Player p4);
+	
+	/**
+	 * 理
+	 * @author L
+	 * @date 2016年4月7日
+	 * @param jangs
+	 */
+	public void sortJang(List<Jang> jangs);
 }

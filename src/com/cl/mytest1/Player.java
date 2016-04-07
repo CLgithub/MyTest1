@@ -1,10 +1,11 @@
 package com.cl.mytest1;
 
+import java.util.List;
 import java.util.TreeSet;
 
 public class Player {
 	private int place;
-	private TreeSet<Jang> myJangs;
+	private List<Jang> myJangs;
 
 	public int getPlace() {
 		return place;
@@ -14,16 +15,15 @@ public class Player {
 		this.place = place;
 	}
 
-	public TreeSet<Jang> getMyJangs() {
+	public List<Jang> getMyJangs() {
 		return myJangs;
 	}
 
-	public void setMyJangs(TreeSet<Jang> myJangs) {
+	public void setMyJangs(List<Jang> myJangs) {
 		this.myJangs = myJangs;
 	}
 
-	
-	public Player(int place, TreeSet<Jang> myJangs) {
+	public Player(int place, List<Jang> myJangs) {
 		this.place = place;
 		this.myJangs = myJangs;
 	}

@@ -1,6 +1,7 @@
 package com.cl.mytest1;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.TreeSet;
@@ -20,7 +21,7 @@ public class ServerImpl implements Server {
 			}
 		}
 		Random random=new Random();
-		for(int i=0;i<140;i++){
+		for(int i=0;i<10000;i++){
 			int index1=random.nextInt(list.size());
 			int index2=random.nextInt(list.size());
 			Jang tmp=list.get(index1);
@@ -32,10 +33,10 @@ public class ServerImpl implements Server {
 
 	@Override
 	public void loadMyJang(List<Jang> jangs, Player p1, Player p2, Player p3, Player p4) {
-		TreeSet<Jang> jangs1=new TreeSet<Jang>();
-		TreeSet<Jang> jangs2=new TreeSet<Jang>();
-		TreeSet<Jang> jangs3=new TreeSet<Jang>();
-		TreeSet<Jang> jangs4=new TreeSet<Jang>();
+		List<Jang> jangs1=new ArrayList<Jang>();
+		List<Jang> jangs2=new ArrayList<Jang>();
+		List<Jang> jangs3=new ArrayList<Jang>();
+		List<Jang> jangs4=new ArrayList<Jang>();
 		Jang j1=null;
 		Jang j2=null;
 		Jang j3=null;
@@ -72,4 +73,11 @@ public class ServerImpl implements Server {
 		p3.setMyJangs(jangs3);
 		p4.setMyJangs(jangs4);
 	}
+
+	@Override
+	public void sortJang(List<Jang> jangs) {
+		Collections.sort(jangs,new MySortJ());
+	}
+	
+	
 }

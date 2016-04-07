@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class Jang implements Comparable<Jang>{
+public class Jang{
 	private int number;
 	private String type;
 	private int value;
@@ -80,28 +80,7 @@ public class Jang implements Comparable<Jang>{
 //	
 	
 
-	@Override
-	public int compareTo(Jang j2) {
-		if(type.equals(j2.type)){
-			if(value==j2.value){
-				return number-j2.number;
-			}else {
-				return value-j2.value;
-			}
-		}else if(type.equals("O")){
-			return -11;
-		}else if(type.equals("L")){
-			return 1;
-		}else if(type.equals("W")){
-			if(j2.type.equals("L")){
-				return -1;
-			}else {
-				return 1;
-			}
-		}else {
-			return 0;
-		}
-	}
+	
 
 	
 	
