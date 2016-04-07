@@ -24,9 +24,9 @@ public class MainT {
 		server.sortJang(p3.getMyJangs());
 		server.sortJang(p4.getMyJangs());
 		System.out.println(p1.getMyJangs());
-		System.out.println(p2.getMyJangs());
-		System.out.println(p3.getMyJangs());
-		System.out.println(p4.getMyJangs());
+//		System.out.println(p2.getMyJangs());
+//		System.out.println(p3.getMyJangs());
+//		System.out.println(p4.getMyJangs());
 		
 		for (int i = 0; i < jangs.size(); i++) {
 			System.out.print(jangs.get(i));
@@ -36,8 +36,7 @@ public class MainT {
 		}
 		System.out.println();
 		
-		
-//		//run
-//		server.runJang(jangs,p1,p2,p3,p4);
+		//run
+		server.runJang(jangs,p1,p2,p3,p4);
 	}
 }

@@ -2,9 +2,14 @@ package com.cl.mytest1;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import java.util.TreeSet;
+
+import com.sun.xml.internal.bind.v2.runtime.reflect.ListIterator;
+
+import sun.net.www.content.text.plain;
 
 public class ServerImpl implements Server {
 	
@@ -77,6 +82,62 @@ public class ServerImpl implements Server {
 	@Override
 	public void sortJang(List<Jang> jangs) {
 		Collections.sort(jangs,new MySortJ());
+	}
+
+	@Override
+	public void runJang(List<Jang> jangs, Player p1, Player p2, Player p3, Player p4) {
+//		test(p1.getMyJangs(),jangs,2,2,new StringBuilder(""));
+		test2(p1.getMyJangs(),jangs);
+	}
+
+	private void test2(List<Jang> list, List<Jang> jangs) {
+		Iterator<Jang> it=list.iterator();
+		int leng=list.size();
+		for(int i=0;i<leng;i++){
+			//chu
+			Jang t1=list.remove(i);
+
+			System.out.print("---打"+t1+"");
+			//mo
+			list.add(jangs.get(56));
+			this.sortJang(list);
+			System.out.println("摸"+jangs.get(56));
+			System.out.println(list);
+			test2(list, jangs);
+		}
+		
+	}
+
+	private int test(List<Jang> p1Js,List<Jang> jangs,int y,int k,StringBuilder tmpj) {
+		y--;
+		if(y>=0){
+			List<Jang> tmpP1Js=new ArrayList<>();
+			for(int i=0;i<p1Js.size();i++){
+				tmpP1Js.add(p1Js.get(i));
+			}
+			int leng=p1Js.size();
+			for(int i=0;i<leng;i++){
+				//进的时候都应该加上历史，过的时候不加
+				tmpj.append("打"+p1Js.remove(i).toString());
+				
+				p1Js.add(jangs.get(56+(1-y)*4));
+				this.sortJang(p1Js);
+				tmpj.append("摸"+jangs.get(56+(1-y)*4));
+				
+				String str=tmpj.toString();
+				str=str.substring(str.length()-10*(k-y));
+				
+				System.out.println(p1Js+str);
+				test(p1Js,jangs,y,k,new StringBuilder(str));
+				p1Js.clear();
+				for(int j=0;j<tmpP1Js.size();j++){
+					p1Js.add(tmpP1Js.get(j));
+				}
+			}
+//			System.out.println(p1Js);
+//			System.out.println(tmpP1Js);
+		}
+		return 0;
 	}
 	
 	
