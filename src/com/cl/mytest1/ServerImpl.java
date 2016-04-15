@@ -6,14 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-import java.util.TreeSet;
-
-import com.sun.xml.internal.bind.v2.runtime.reflect.ListIterator;
-
-import sun.net.www.content.text.plain;
 
 public class ServerImpl implements Server {
 	
@@ -90,26 +84,7 @@ public class ServerImpl implements Server {
 
 	@Override
 	public void runJang(List<Jang> jangs, Player p1, Player p2, Player p3, Player p4) {
-		test(p1.getMyJangs(),jangs,4,4,new StringBuilder(""));
-//		test2(p1.getMyJangs(),jangs);
-	}
-
-	private void test2(List<Jang> list, List<Jang> jangs) {
-		Iterator<Jang> it=list.iterator();
-		int leng=list.size();
-		for(int i=0;i<leng;i++){
-			//chu
-			Jang t1=list.remove(i);
-
-			System.out.print("---打"+t1+"");
-			//mo
-			list.add(jangs.get(56));
-			this.sortJang(list);
-			System.out.println("摸"+jangs.get(56));
-			System.out.println(list);
-			test2(list, jangs);
-		}
-		
+		test(p1.getMyJangs(),jangs,5,5,new StringBuilder(""));
 	}
 
 	private void test(List<Jang> p1Js,List<Jang> jangs,int y,int k,StringBuilder tmpj) {
@@ -134,16 +109,13 @@ public class ServerImpl implements Server {
 //				System.out.println(p1Js+"---"+str);
 				outToFile(p1Js+"---"+str);
 				test(p1Js,jangs,y,k,new StringBuilder(str));
+				
 				p1Js.clear();
 				for(int j=0;j<tmpP1Js.size();j++){
 					p1Js.add(tmpP1Js.get(j));
 				}
 				tmpj=new StringBuilder(str.substring(0,10*(k-y-1)));
 			}
-//			System.out.println(p1Js);
-//			System.out.println(tmpP1Js);
-		}else {
-//			y++;
 		}
 	}
 	
@@ -158,6 +130,12 @@ public class ServerImpl implements Server {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public boolean isLicense(List<Jang> js) {
+		System.out.println(js);
+		return false;
 	}
 	
 	

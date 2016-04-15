@@ -42,4 +42,13 @@ public interface Server {
 	 * @param p4
 	 */
 	public void runJang(List<Jang> jangs, Player p1, Player p2, Player p3, Player p4);
+	
+	/**
+	 * 判断是否胡	(ABC)*n+(DDD)*m+EE
+	 * @author L
+	 * @date 2016年4月15日
+	 * @param js
+	 * @return
+	 */
+	public boolean isLicense(List<Jang> js);
 }
