@@ -1,5 +1,9 @@
 package com.cl.mytest1;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -86,8 +90,8 @@ public class ServerImpl implements Server {
 
 	@Override
 	public void runJang(List<Jang> jangs, Player p1, Player p2, Player p3, Player p4) {
-//		test(p1.getMyJangs(),jangs,2,2,new StringBuilder(""));
-		test2(p1.getMyJangs(),jangs);
+		test(p1.getMyJangs(),jangs,4,4,new StringBuilder(""));
+//		test2(p1.getMyJangs(),jangs);
 	}
 
 	private void test2(List<Jang> list, List<Jang> jangs) {
@@ -108,7 +112,7 @@ public class ServerImpl implements Server {
 		
 	}
 
-	private int test(List<Jang> p1Js,List<Jang> jangs,int y,int k,StringBuilder tmpj) {
+	private void test(List<Jang> p1Js,List<Jang> jangs,int y,int k,StringBuilder tmpj) {
 		y--;
 		if(y>=0){
 			List<Jang> tmpP1Js=new ArrayList<>();
@@ -127,17 +131,33 @@ public class ServerImpl implements Server {
 				String str=tmpj.toString();
 				str=str.substring(str.length()-10*(k-y));
 				
-				System.out.println(p1Js+str);
+//				System.out.println(p1Js+"---"+str);
+				outToFile(p1Js+"---"+str);
 				test(p1Js,jangs,y,k,new StringBuilder(str));
 				p1Js.clear();
 				for(int j=0;j<tmpP1Js.size();j++){
 					p1Js.add(tmpP1Js.get(j));
 				}
+				tmpj=new StringBuilder(str.substring(0,10*(k-y-1)));
 			}
 //			System.out.println(p1Js);
 //			System.out.println(tmpP1Js);
+		}else {
+//			y++;
 		}
-		return 0;
+	}
+	
+	public void outToFile(String str){
+		try {
+			File file=new File("E:/myTest/test.txt");
+			FileWriter fileWriter=new FileWriter(file,true);
+			BufferedWriter bufferedWriter=new BufferedWriter(fileWriter);
+			bufferedWriter.write(str);
+			bufferedWriter.newLine();
+			bufferedWriter.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
