@@ -19,7 +19,7 @@ public class ServerImpl implements Server {
 		for (int j = 0; j < types.length; j++) {
 			for (int i = 0; i < values.length; i++) {
 				for (int k = 0; k < 4; k++) {
-					list.add(new Jang(values[i], types[j], Jang.INIT, k+1));
+					list.add(new Jang(values[i], types[j], Jang.INIT, k+1,1));
 				}
 			}
 		}
@@ -135,7 +135,25 @@ public class ServerImpl implements Server {
 	@Override
 	public boolean isLicense(List<Jang> js) {
 		System.out.println(js);
+		int count=0;
+		//取出两张相同的，置为0
+		for(int i=0;i<js.size()-2;i++){
+			if(js.get(i).equals(js.get(i+1))){
+				if(!js.get(i).equals(js.get(i+2))){
+					System.out.println("对"+js.get(i));
+				}else {
+					System.out.println("三"+js.get(i));
+				}
+				i+=2;//跳过3张牌的
+			}
+		}
+		//取出剩下的12判断
+//		System.out.println(count);
 		return false;
+		/*
+		 [[7O], [8O], [1W], [1W], [1W], [3W], [3W], [6W], [9W], [2L], [3L], [8L], [8L], [8L]]
+		对[3W]
+		 * */
 	}
 	
 	

@@ -13,7 +13,7 @@ public class MySortJ implements Comparator<Jang>{
 				return j1.getValue()-j2.getValue();
 			}
 		}else if(j1.getType().equals("O")){
-			return -11;
+			return -1;
 		}else if(j1.getType().equals("L")){
 			return 1;
 		}else if(j1.getType().equals("W")){

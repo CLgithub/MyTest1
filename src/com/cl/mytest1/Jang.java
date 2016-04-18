@@ -9,6 +9,7 @@ public class Jang{
 	private String type;
 	private int value;
 	private int status;// init：未被摸，1、2、3、4：在谁手上
+	private int hu;
 
 	public static final int INIT = 0;
 	public static final int P1HAVE = 1;
@@ -24,11 +25,12 @@ public class Jang{
 	public static final int P3R = 11;
 	public static final int P4R = 12;
 
-	public Jang( int value, String type, int status, int number) {
+	public Jang( int value, String type, int status, int number, int hu) {
 		this.type = type;
 		this.value = value;
 		this.status = status;
 		this.number=number;
+		this.hu=hu;
 	}
 
 	public int getStatus() {
@@ -63,6 +65,14 @@ public class Jang{
 		this.number = number;
 	}
 
+	public int getHu() {
+		return hu;
+	}
+
+	public void setHu(int hu) {
+		this.hu = hu;
+	}
+
 	@Override
 	public String toString() {
 //		String str = "[" + value + type + " " + status + "]";
@@ -79,9 +89,17 @@ public class Jang{
 //	}
 //	
 	
-
+	@Override
+	public boolean equals(Object obj) {
+		Jang jang=(Jang) obj;
+		if(this.type.equals(jang.type)&&this.value==jang.value){
+			return true;
+		}else {
+			return false;
+		}
+	}
 	
-
+	
 	
 	
 
