@@ -6,14 +6,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
 public class ServerImpl implements Server {
 	
 	@Override
-	public List<Jang> loadBJang() {
-		List<Jang> list = new ArrayList<Jang>();
+	public LinkedList<Jang> loadBJang() {
+		LinkedList<Jang> list = new LinkedList<Jang>();
 		String[] types = { "O", "W", "L" };
 		Integer[] values = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 		for (int j = 0; j < types.length; j++) {
@@ -35,11 +36,11 @@ public class ServerImpl implements Server {
 	}
 
 	@Override
-	public void loadMyJang(List<Jang> jangs, Player p1, Player p2, Player p3, Player p4) {
-		List<Jang> jangs1=new ArrayList<Jang>();
-		List<Jang> jangs2=new ArrayList<Jang>();
-		List<Jang> jangs3=new ArrayList<Jang>();
-		List<Jang> jangs4=new ArrayList<Jang>();
+	public void loadMyJang(LinkedList<Jang> jangs, Player p1, Player p2, Player p3, Player p4) {
+		LinkedList<Jang> jangs1=new LinkedList<Jang>();
+		LinkedList<Jang> jangs2=new LinkedList<Jang>();
+		LinkedList<Jang> jangs3=new LinkedList<Jang>();
+		LinkedList<Jang> jangs4=new LinkedList<Jang>();
 		Jang j1=null;
 		Jang j2=null;
 		Jang j3=null;
@@ -83,11 +84,11 @@ public class ServerImpl implements Server {
 	}
 
 	@Override
-	public void runJang(List<Jang> jangs, Player p1, Player p2, Player p3, Player p4) {
-		test(p1.getMyJangs(),jangs,5,5,new StringBuilder(""));
+	public void runJang(LinkedList<Jang> jangs, Player p1, Player p2, Player p3, Player p4) {
+		test(p1.getMyJangs(),jangs,4,4,new StringBuilder(""));
 	}
 
-	private void test(List<Jang> p1Js,List<Jang> jangs,int y,int k,StringBuilder tmpj) {
+	private void test(LinkedList<Jang> p1Js,LinkedList<Jang> jangs,int y,int k,StringBuilder tmpj) {
 		y--;
 		if(y>=0){
 			List<Jang> tmpP1Js=new ArrayList<>();
@@ -106,8 +107,8 @@ public class ServerImpl implements Server {
 				String str=tmpj.toString();
 				str=str.substring(str.length()-10*(k-y));
 				
-//				System.out.println(p1Js+"---"+str);
-				outToFile(p1Js+"---"+str);
+				System.out.println(p1Js+"---"+str);
+//				outToFile(p1Js+"---"+str);
 				test(p1Js,jangs,y,k,new StringBuilder(str));
 				
 				p1Js.clear();

@@ -2,6 +2,7 @@ package com.cl.mytest1;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 public class MainT {
@@ -14,7 +15,7 @@ public class MainT {
 		Player p4=new Player(4, null);
 		Server server=new ServerImpl();
 		//砌
-		List<Jang> jangs=server.loadBJang();
+		LinkedList<Jang> jangs=server.loadBJang();
 		
 		//摸
 		server.loadMyJang(jangs,p1,p2,p3,p4);
@@ -37,7 +38,7 @@ public class MainT {
 //		System.out.println();
 		
 		//run
-//		server.runJang(jangs,p1,p2,p3,p4);
-		server.isLicense(p1.getMyJangs());
+		server.runJang(jangs,p1,p2,p3,p4);
+//		server.isLicense(p1.getMyJangs());
 	}
 }

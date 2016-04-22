@@ -1,11 +1,12 @@
 package com.cl.mytest1;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.TreeSet;
 
 public class Player {
 	private int place;
-	private List<Jang> myJangs;
+	private LinkedList<Jang> myJangs;
 
 	public int getPlace() {
 		return place;
@@ -15,15 +16,15 @@ public class Player {
 		this.place = place;
 	}
 
-	public List<Jang> getMyJangs() {
+	public LinkedList<Jang> getMyJangs() {
 		return myJangs;
 	}
 
-	public void setMyJangs(List<Jang> myJangs) {
+	public void setMyJangs(LinkedList<Jang> myJangs) {
 		this.myJangs = myJangs;
 	}
 
-	public Player(int place, List<Jang> myJangs) {
+	public Player(int place, LinkedList<Jang> myJangs) {
 		this.place = place;
 		this.myJangs = myJangs;
 	}

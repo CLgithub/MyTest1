@@ -1,5 +1,6 @@
 package com.cl.mytest1;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public interface Server {
@@ -9,7 +10,7 @@ public interface Server {
 	 * @date 2016年4月6日
 	 * @return
 	 */
-	public List<Jang> loadBJang();
+	public LinkedList<Jang> loadBJang();
 
 	/**
 	 * 摸
@@ -21,7 +22,7 @@ public interface Server {
 	 * @param p3
 	 * @param p4
 	 */
-	public void loadMyJang(List<Jang> jangs, Player p1, Player p2, Player p3, Player p4);
+	public void loadMyJang(LinkedList<Jang> jangs, Player p1, Player p2, Player p3, Player p4);
 	
 	/**
 	 * 理
@@ -41,7 +42,7 @@ public interface Server {
 	 * @param p3
 	 * @param p4
 	 */
-	public void runJang(List<Jang> jangs, Player p1, Player p2, Player p3, Player p4);
+	public void runJang(LinkedList<Jang> jangs, Player p1, Player p2, Player p3, Player p4);
 	
 	/**
 	 * 判断是否胡	(ABC)*n+(DDD)*m+EE
