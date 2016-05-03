@@ -38,7 +38,7 @@ public class MainT {
 //		System.out.println();
 		
 		//run
-		server.runJang(jangs,p1,p2,p3,p4);
-//		server.isLicense(p1.getMyJangs());
+//		server.runJang(jangs,p1,p2,p3,p4);
+		server.isLicense(p1.getMyJangs());
 	}
 }

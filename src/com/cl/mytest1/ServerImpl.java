@@ -137,24 +137,62 @@ public class ServerImpl implements Server {
 	public boolean isLicense(List<Jang> js) {
 		System.out.println(js);
 		int count=0;
-		//取出两张相同的，置为0
-		for(int i=0;i<js.size()-2;i++){
+		ArrayList<Integer> s2=new ArrayList<>();
+		ArrayList<Integer> s3=new ArrayList<>();
+		ArrayList<Integer> s4=new ArrayList<>();
+		//取出相同的，置为0
+		for(int i=0;i<js.size()-1;i++){
 			if(js.get(i).equals(js.get(i+1))){
-				if(!js.get(i).equals(js.get(i+2))){
-					System.out.println("对"+js.get(i));
-				}else {
+				if(((i+2)<js.size())&&(js.get(i).equals(js.get(i+2)))){
+					if(((i+3)<js.size())&&(js.get(i).equals(js.get(i+3)))){
+						System.out.println("四"+js.get(i));
+						s4.add(i);
+						i+=3;
+						continue;
+					}
 					System.out.println("三"+js.get(i));
+					s3.add(i);
+					i+=2;
+					continue;
 				}
-				i+=2;//跳过3张牌的
+				System.out.println("对"+js.get(i));
+				s2.add(i);
+				i+=1;
 			}
 		}
-		//取出剩下的12判断
-//		System.out.println(count);
+		out:for(int j=0;j<js.size()-2;j++){
+			for(int i=0;i<s2.size();i++){
+				if(j==s2.get(i)){
+					js.get(j).setHu(0);
+					js.get(j+1).setHu(0);
+					j+=1;
+					continue out;
+				}
+			}
+			for(int k=0;k<s3.size();k++){
+				if(j==s3.get(k)){
+					js.get(j).setHu(0);
+					js.get(j+1).setHu(0);
+					js.get(j+2).setHu(0);
+					j+=2;
+					continue out;
+				}
+			}
+		//	System.out.print(j+",");
+			if(js.get(j).getType().equals(js.get(j+1).getType())&&js.get(j).getType().equals(js.get(j+2).getType())){	//同花
+				if((js.get(j).getValue()+1)==js.get(j+1).getValue()&&(js.get(j).getValue()+2)==js.get(j+2).getValue()){
+					js.get(j).setHu(0);
+					js.get(j+1).setHu(0);
+					js.get(j+2).setHu(0);
+					j+=2;
+					continue out;
+				}
+			}
+			count+=js.get(j).getHu();
+		}
+		System.out.println(js);
+		System.out.println(count);
 		return false;
-		/*
-		 [[7O], [8O], [1W], [1W], [1W], [3W], [3W], [6W], [9W], [2L], [3L], [8L], [8L], [8L]]
-		对[3W]
-		 * */
 	}
 	
 	

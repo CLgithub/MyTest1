@@ -76,7 +76,7 @@ public class Jang{
 	@Override
 	public String toString() {
 //		String str = "[" + value + type + " " + status + "]";
-		String str = "[" + value + type + "]";
+		String str = "[" + value + type +hu+ "]";
 		return str;
 		// return "Jang [type=" + type + ", value=" + value + ", status=" +
 		// status + "]";
